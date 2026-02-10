@@ -31,9 +31,7 @@
       overflow-x: hidden;
     }
 
-    section {
-      padding: 100px 20px;
-    }
+    section { padding: 100px 20px; }
 
     .container {
       max-width: 1200px;
@@ -47,7 +45,6 @@
 
     p { line-height: 1.7; }
 
-    /* HERO COM VÍDEO */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -116,6 +113,7 @@
       font-size:18px;
       box-shadow:0 0 80px rgba(244,114,182,.7);
       transition:.3s;
+      text-decoration:none;
     }
 
     .cta:hover {
@@ -123,7 +121,6 @@
       box-shadow:0 0 120px rgba(167,139,250,1);
     }
 
-    /* ANIMAÇÕES */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(30px); }
       to { opacity:1; transform:none; }
@@ -140,7 +137,6 @@
       transform:none;
     }
 
-    /* CARDS */
     .grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -155,7 +151,6 @@
       border:1px solid var(--borda);
     }
 
-    /* TÍTULOS */
     .title {
       text-align:center;
       font-size:36px;
@@ -166,18 +161,6 @@
       margin-bottom:60px;
     }
 
-    /* PROMPTS */
-    .prompt {
-      background:var(--card);
-      padding:22px;
-      border-radius:18px;
-      border:1px solid var(--borda);
-      margin-bottom:18px;
-    }
-
-    .prompt.pago { opacity:.4; }
-
-    /* DEPOIMENTOS */
     .testimonial {
       font-style:italic;
       color:#d1d5db;
@@ -196,7 +179,6 @@
       font-size:14px;
     }
 
-    /* MOBILE AGRESSIVO */
     @media(max-width:768px){
       section { padding:70px 16px; }
       .hero p { font-size:17px; }
@@ -206,7 +188,6 @@
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <video autoplay muted loop playsinline>
     <source src="https://cdn.coverr.co/videos/coverr-artificial-intelligence-network-5472/1080p.mp4" type="video/mp4">
@@ -216,14 +197,15 @@
     <div class="badge">⚡ IA • PROMPTS PROFISSIONAIS</div>
     <h1>Prompts de IA para<br>Imagens e Vídeos Premium</h1>
     <p>O mesmo nível de prompts usados por criadores, designers e profissionais para gerar conteúdos de alto impacto com IA.</p>
+
+    <!-- 🔥 LINK DE PAGAMENTO CORRETO -->
     <a class="cta" target="_blank"
-      href="https://waldirpenido.hotmart.host/pack-de-prompts-ia-imagem-e-video-profissional-79988ce8-4db6-449c-9a1c-480e2ee3a4ff">
+       href="https://go.hotmart.com/J104365054I">
       🚀 Comprar acesso premium
     </a>
   </div>
 </section>
 
-<!-- O QUE VOCÊ RECEBE -->
 <section>
   <div class="container reveal">
     <h2 class="title">O que você recebe</h2>
@@ -236,7 +218,6 @@
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
 <section>
   <div class="container reveal">
     <h2 class="title">O que estão dizendo</h2>
