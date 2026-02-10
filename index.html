@@ -10,265 +10,266 @@
 
   <style>
     :root {
-      --bg: #070a13;
-      --bg2: #0b1020;
-      --card: rgba(17, 24, 39, 0.7);
+      --bg: #05060c;
+      --card: rgba(17,24,39,.7);
       --lilas: #a78bfa;
       --rosa: #f472b6;
       --verde: #22c55e;
       --texto: #e5e7eb;
       --cinza: #9ca3af;
-      --borda: rgba(255,255,255,0.08);
-      --glow: 0 0 40px rgba(167,139,250,0.35);
+      --borda: rgba(255,255,255,.08);
+      --glow: 0 0 60px rgba(167,139,250,.45);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background:
-        radial-gradient(circle at 20% 10%, #1a1f3c, transparent 40%),
-        radial-gradient(circle at 80% 20%, #2b164f, transparent 40%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+      background: #05060c;
       color: var(--texto);
-      padding: 20px;
+      overflow-x: hidden;
     }
 
-    h1, h2, h3 {
-      margin: 0 0 12px;
-      letter-spacing: -0.5px;
-    }
-
-    p {
-      line-height: 1.7;
-    }
-
-    a {
-      text-decoration: none;
+    section {
+      padding: 100px 20px;
     }
 
     .container {
-      max-width: 1150px;
+      max-width: 1200px;
       margin: auto;
     }
 
-    /* HERO */
+    h1,h2,h3 {
+      margin: 0 0 16px;
+      letter-spacing: -.6px;
+    }
+
+    p { line-height: 1.7; }
+
+    /* HERO COM VÍDEO */
     .hero {
-      text-align: center;
-      padding: 90px 20px 70px;
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .25;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, #1a1f3c, #05060c 70%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease forwards;
     }
 
     .badge {
       display: inline-block;
-      background: linear-gradient(90deg, var(--lilas), var(--rosa));
-      color: #000;
-      padding: 8px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 22px;
+      background: linear-gradient(90deg,var(--lilas),var(--rosa));
+      color:#000;
+      padding:8px 18px;
+      border-radius:999px;
+      font-weight:700;
       box-shadow: var(--glow);
+      margin-bottom:24px;
     }
 
     .hero h1 {
-      font-size: 52px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #fff, var(--lilas), var(--rosa));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: clamp(38px,5vw,64px);
+      font-weight:900;
+      background: linear-gradient(90deg,#fff,var(--lilas),var(--rosa));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
     .hero p {
       color: var(--cinza);
-      font-size: 19px;
-      max-width: 760px;
-      margin: 26px auto;
+      font-size:20px;
+      max-width:800px;
+      margin:24px auto;
     }
 
     .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 35px;
-      padding: 20px 48px;
-      background: linear-gradient(90deg, var(--lilas), var(--rosa));
-      color: #000;
-      font-weight: 800;
-      border-radius: 999px;
-      font-size: 18px;
-      box-shadow: 0 0 50px rgba(244,114,182,0.55);
-      transition: transform .25s ease, box-shadow .25s ease;
+      display:inline-flex;
+      padding:20px 50px;
+      background:linear-gradient(90deg,var(--lilas),var(--rosa));
+      color:#000;
+      font-weight:800;
+      border-radius:999px;
+      font-size:18px;
+      box-shadow:0 0 80px rgba(244,114,182,.7);
+      transition:.3s;
     }
 
     .cta:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 0 80px rgba(167,139,250,0.9);
+      transform:scale(1.07);
+      box-shadow:0 0 120px rgba(167,139,250,1);
     }
 
-    /* BENEFÍCIOS */
-    .beneficios {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin: 90px 0;
+    /* ANIMAÇÕES */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to { opacity:1; transform:none; }
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(40px);
+      transition:.8s ease;
+    }
+
+    .reveal.active {
+      opacity:1;
+      transform:none;
+    }
+
+    /* CARDS */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:28px;
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+      background: var(--card);
       backdrop-filter: blur(14px);
-      padding: 32px;
-      border-radius: 22px;
-      border: 1px solid var(--borda);
-      position: relative;
-      overflow: hidden;
+      padding:34px;
+      border-radius:22px;
+      border:1px solid var(--borda);
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(167,139,250,0.25), transparent 60%);
-      opacity: 0;
-      transition: opacity .3s ease;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card span {
-      font-size: 34px;
-      display: block;
-      margin-bottom: 12px;
+    /* TÍTULOS */
+    .title {
+      text-align:center;
+      font-size:36px;
+      font-weight:900;
+      background:linear-gradient(90deg,#fff,var(--lilas));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:60px;
     }
 
     /* PROMPTS */
-    .section-title {
-      margin-top: 100px;
-      margin-bottom: 25px;
-      text-align: center;
-      font-size: 32px;
-      font-weight: 800;
-      background: linear-gradient(90deg, #fff, var(--lilas));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     .prompt {
-      background: var(--card);
-      backdrop-filter: blur(12px);
-      padding: 22px;
-      border-radius: 18px;
-      margin-bottom: 18px;
-      border: 1px solid var(--borda);
+      background:var(--card);
+      padding:22px;
+      border-radius:18px;
+      border:1px solid var(--borda);
+      margin-bottom:18px;
     }
 
-    .prompt.pago {
-      opacity: 0.45;
+    .prompt.pago { opacity:.4; }
+
+    /* DEPOIMENTOS */
+    .testimonial {
+      font-style:italic;
+      color:#d1d5db;
+    }
+
+    .author {
+      margin-top:12px;
+      font-weight:700;
+      color:#fff;
     }
 
     footer {
-      text-align: center;
-      margin-top: 110px;
-      color: var(--cinza);
-      font-size: 14px;
-      opacity: 0.8;
+      text-align:center;
+      padding:80px 20px;
+      color:var(--cinza);
+      font-size:14px;
+    }
+
+    /* MOBILE AGRESSIVO */
+    @media(max-width:768px){
+      section { padding:70px 16px; }
+      .hero p { font-size:17px; }
+      .cta { width:100%; justify-content:center; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+<!-- HERO -->
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-artificial-intelligence-network-5472/1080p.mp4" type="video/mp4">
+  </video>
 
-    <!-- HERO -->
-    <div class="hero">
-      <div class="badge">⚡ IA • PROMPTS PROFISSIONAIS</div>
-      <h1>Prompts de IA<br>para Imagens e Vídeos Premium</h1>
-      <p>
-        O mesmo tipo de prompts usados por designers, criadores e profissionais
-        para gerar imagens e vídeos de alto impacto com inteligência artificial.
-      </p>
-
-      <a
-        class="cta"
-        href="https://waldirpenido.hotmart.host/pack-de-prompts-ia-imagem-e-video-profissional-79988ce8-4db6-449c-9a1c-480e2ee3a4ff"
-        target="_blank"
-      >
-        🚀 Comprar acesso premium
-      </a>
-    </div>
-
-    <!-- BENEFÍCIOS -->
-    <div class="beneficios">
-      <div class="card">
-        <span>⚡</span>
-        <h3>Velocidade absurda</h3>
-        <p>Crie imagens e vídeos em minutos usando prompts otimizados.</p>
-      </div>
-      <div class="card">
-        <span>🧠</span>
-        <h3>Inteligência aplicada</h3>
-        <p>Prompts testados e refinados para resultados profissionais.</p>
-      </div>
-      <div class="card">
-        <span>🔓</span>
-        <h3>Acesso vitalício</h3>
-        <p>Compre uma vez e use para sempre, sem mensalidade.</p>
-      </div>
-    </div>
-
-    <!-- GRATUITOS -->
-    <h2 class="section-title">Prompts Gratuitos</h2>
-    <div id="gratuitos"></div>
-
-    <!-- PREMIUM -->
-    <h2 class="section-title">Prompts Premium</h2>
-    <p style="text-align:center;color:#9ca3af;">
-      Conteúdo completo liberado imediatamente após a compra.
-    </p>
-    <div id="pagos"></div>
-
-    <footer>
-      © 2026 · penido.online · Produto digital entregue via Hotmart
-    </footer>
-
+  <div class="hero-content">
+    <div class="badge">⚡ IA • PROMPTS PROFISSIONAIS</div>
+    <h1>Prompts de IA para<br>Imagens e Vídeos Premium</h1>
+    <p>O mesmo nível de prompts usados por criadores, designers e profissionais para gerar conteúdos de alto impacto com IA.</p>
+    <a class="cta" target="_blank"
+      href="https://waldirpenido.hotmart.host/pack-de-prompts-ia-imagem-e-video-profissional-79988ce8-4db6-449c-9a1c-480e2ee3a4ff">
+      🚀 Comprar acesso premium
+    </a>
   </div>
+</section>
 
-  <script>
-    const API = "https://prompt-saas-backend-production.up.railway.app";
+<!-- O QUE VOCÊ RECEBE -->
+<section>
+  <div class="container reveal">
+    <h2 class="title">O que você recebe</h2>
+    <div class="grid">
+      <div class="card">📸 Prompts para imagens hiper-realistas</div>
+      <div class="card">🎥 Prompts para vídeos cinematográficos</div>
+      <div class="card">🧠 Estruturas prontas e testadas</div>
+      <div class="card">🚀 Acesso vitalício sem mensalidade</div>
+    </div>
+  </div>
+</section>
 
-    fetch(API + "/prompts/gratuitos")
-      .then(r => r.json())
-      .then(data => {
-        const el = document.getElementById("gratuitos");
-        data.forEach(p => {
-          el.innerHTML += `
-            <div class="prompt">
-              <h3>${p.titulo}</h3>
-              <p>${p.conteudo}</p>
-            </div>
-          `;
-        });
-      });
+<!-- DEPOIMENTOS -->
+<section>
+  <div class="container reveal">
+    <h2 class="title">O que estão dizendo</h2>
+    <div class="grid">
+      <div class="card testimonial">
+        “Os prompts são absurdamente bons. Economizei horas de trabalho.”
+        <div class="author">— Lucas M., Designer</div>
+      </div>
+      <div class="card testimonial">
+        “Melhor investimento que fiz para criação com IA.”
+        <div class="author">— Amanda R., Criadora de Conteúdo</div>
+      </div>
+      <div class="card testimonial">
+        “Qualidade profissional real, não é prompt genérico.”
+        <div class="author">— Felipe S., Marketing</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    fetch(API + "/prompts/pagos")
-      .then(r => r.json())
-      .then(data => {
-        const el = document.getElementById("pagos");
-        data.forEach(p => {
-          el.innerHTML += `
-            <div class="prompt pago">
-              <h3>${p.titulo}</h3>
-              <p>🔒 Disponível após a compra</p>
-            </div>
-          `;
-        });
-      });
-  </script>
+<footer>
+  © 2026 · Waldir Penido · Produto digital entregue via Hotmart
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  window.addEventListener('scroll', () => {
+    reveals.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if(top < window.innerHeight - 100) el.classList.add('active');
+    });
+  });
+</script>
 
 </body>
 </html>
